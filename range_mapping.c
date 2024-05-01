@@ -26,10 +26,31 @@ int main()
     printf("\nEnter Input: ");
     scanf("%d",&inpu);
 
+    if(in_r1<in_r2)
+    {
+        if(in_r1<inpu && in_r2>inpu)
+        {
+            outpu = mapping(in_r1,in_r2,ot_r1,ot_r2,inpu);
+            printf("%d",outpu);
+        }
+        else
+        {
+            printf("Input Number is out of Range");
+        }
+    }
+
+    if(in_r1>in_r2)
+    {
+        if(in_r1>inpu && in_r2<inpu)
+        {
+            outpu = mapping(in_r1,in_r2,ot_r1,ot_r2,inpu);
+            printf("%d",outpu);
+        }
+        else
+        {
+            printf("Input Number is out of Range");
+        }
+    }
     //output = ot_r1 + ((ot_r2 - ot_r1) * (input - in_r1) / (in_r2 - in_r1));
-
-   outpu = mapping(in_r1,in_r2,ot_r1,ot_r2,inpu);
-   printf("%d",outpu);
-
     return 0;
 }
