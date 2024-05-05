@@ -1,0 +1,7 @@
+Name = Aaditya
+Middle Name =  Abhijit
+Surname = Bhure
+DOB = 27/05/2005
+Date = 5/5/2005
+Phone Number = +917758031767
+Email Id = aadityabhureofficial@gmail.com
