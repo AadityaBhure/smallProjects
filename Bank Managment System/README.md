@@ -2,23 +2,22 @@
 
 ## Overview
 
-This Bank Management System is a console-based application developed in C. It provides a comprehensive set of features for managing a bank account, including user registration, login, and various banking operations. The system is designed to handle basic banking tasks such as deposits, withdrawals, payments, fixed deposits (FD), and loans.
+This Bank Management System is a console-based application developed in C. It provides a comprehensive set of features for managing a bank account, including user registration, login, and various banking operations. The system is designed to handle basic banking tasks such as deposits, withdrawals, payments, and fixed deposits (FD).
 
 ## Features
 
-- **User Registration**: Allows new users to create an account with the bank.
+- **User Registration**: Allows new users to create bank accounts.
 - **Login**: Authenticates users to access their accounts.
 - **Deposit**: Enables users to deposit money into their accounts.
 - **Withdraw**: Allows users to withdraw money from their accounts.
 - **Payment**: Facilitates making payments from the user's account.
 - **Fixed Deposit (FD)**: Supports creating and managing fixed deposits.
-- **Loan Management**: Provides functionality for managing loans.
 
 ## Usage
 
 1. **Registration**:
     - Start the application and select the registration option to create a new account.
-    - Enter the required details such as username, password, and personal information.
+    - Enter the required username, password, and personal information.
 
 2. **Login**:
     - Enter your username and password to access your account.
@@ -34,9 +33,6 @@ This Bank Management System is a console-based application developed in C. It pr
 
 6. **Fixed Deposit (FD)**:
     - Create a fixed deposit by specifying the amount and tenure. Manage your FD through the application.
-
-7. **Loan Management**:
-    - Apply for a loan, view your loan details, and manage repayments.
 
 ## Contributing
 
