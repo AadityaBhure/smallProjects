@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theory of Computation Quiz</title>
+    <link rel="stylesheet" href="styles_4_TOC.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-graduation-cap"></i>
+            <span>EngQuiz</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#" class="active">Theory of Computation</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#" class="login-btn">Login</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <header class="quiz-header">
+        <h1>Theory of Computation</h1>
+        <p>Test your knowledge on automata, languages, and computation</p>
+    </header>
+
+    <!-- Quiz Type Selection -->
+    <div id="quiz-type-selection">
+        <div class="container">
+            <h2>Select Quiz Type</h2>
+            <p>Choose the type of quiz you want to take</p>
+            
+            <div class="quiz-types">
+                <div class="quiz-type-card">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>True/False Quiz</h3>
+                    <p>10 questions to test your basic knowledge</p>
+                    <button id="true-false-btn" class="button">Start Quiz</button>
+                </div>
+                
+                <div class="quiz-type-card">
+                    <i class="fas fa-list-ol"></i>
+                    <h3>Multiple Choice Quiz</h3>
+                    <p>10 questions with multiple answer options</p>
+                    <button id="mcq-btn" class="button">Start Quiz</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Container -->
+    <div id="quiz-container" class="container">
+        <div class="quiz-info">
+            <h2 id="quiz-title"></h2>
+            <div class="progress-container">
+                <div id="progress-bar"></div>
+            </div>
+            <div class="stats-container">
+                <div class="question-number">Question <span id="current-question">1</span> of <span id="total-questions">10</span></div>
+                <div class="score">Score: <span id="score-display">0</span></div>
+            </div>
+        </div>
+        
+        <div class="question-card">
+            <p id="question-text"></p>
+            
+            <!-- True/False Buttons -->
+            <div class="answers-container tf-container">
+                <button id="true-btn" class="button answer-btn"><i class="fas fa-check"></i> True</button>
+                <button id="false-btn" class="button answer-btn"><i class="fas fa-times"></i> False</button>
+            </div>
+
+            <!-- MCQ Options -->
+            <div id="mcq-options" class="answers-container"></div>
+
+            <!-- Feedback -->
+            <div id="feedback-container">
+                <p id="feedback"></p>
+                <p id="explanation"></p>
+            </div>
+        </div>
+
+        <!-- Next Button -->
+        <div id="next-container">
+            <button id="next-btn" class="button">Next Question <i class="fas fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <!-- Results Container -->
+<!-- This HTML replaces the existing results section in your HTML file -->
+<div id="results-container">
+    <div class="container">
+        <div class="results-card">
+            <i id="results-icon" class="fas fa-medal"></i>
+            <h2>Quiz Results</h2>
+            <p>Your score: <span id="final-score">0</span>/<span id="total-possible">10</span></p>
+            
+            <div id="performance-message" class="performance-message">
+                <!-- Performance message will be populated by JavaScript -->
+            </div>
+            
+            <div id="results-graphs" class="results-graphs">
+                <div class="graph-row">
+                    <div class="graph-container">
+                        <h3 class="graph-title">Performance by Question</h3>
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                    <div class="graph-container">
+                        <h3 class="graph-title">Score Distribution</h3>
+                        <canvas id="scoreDistributionChart"></canvas>
+                    </div>
+                </div>
+                <div class="graph-container">
+                    <h3 class="graph-title">Time Analysis</h3>
+                    <canvas id="timeAnalysisChart"></canvas>
+                </div>
+                <div class="graph-row">
+                    <div class="graph-container">
+                        <h3 class="graph-title">Correct vs Incorrect Comparison</h3>
+                        <canvas id="comparisonChart"></canvas>
+                    </div>
+                    <div class="graph-container">
+                        <h3 class="graph-title">Strengths & Weaknesses</h3>
+                        <canvas id="strengthsWeaknessesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="buttons-container">
+                <button id="retry-btn" class="button">Try Again</button>
+                <button id="home-btn" class="button">Home</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>EngQuiz</h3>
+                <p>Your platform for engineering test preparation</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Subjects</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-envelope"></i> contact@engquiz.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 EngQuiz - All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="quiz.js"></script>
+</body>
+</html>

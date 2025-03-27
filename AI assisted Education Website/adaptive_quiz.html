@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adaptive Quiz</title>
+    <script src="adaptive_quiz.js" defer></script>
+    <script src="fetch_questions.js" defer></script>
+    <style>
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Adaptive Quiz</h1>
+    <button id="start-quiz">Start Quiz</button>
+    <button id="retry-quiz" style="display:none;">Try Again</button>
+    <div id="popup"></div>
+    
+    <script>
+        document.getElementById("start-quiz").addEventListener("click", startAdaptiveQuiz);
+        document.getElementById("retry-quiz").addEventListener("click", function() {
+            fetchNewQuestions(localStorage.getItem("nextDifficulty"))
+                .then(() => {
+                    alert("New questions generated. Starting new quiz!");
+                    startAdaptiveQuiz();
+                })
+                .catch(error => {
+                    console.error("Error fetching new questions:", error);
+                    alert("Failed to generate new questions. Try again later.");
+                });
+        });
+        
+        function startAdaptiveQuiz() {
+            let questions = JSON.parse(localStorage.getItem("adaptiveQuizQuestions") || "[]");
+            
+            if (questions.length === 0) {
+                alert("No questions available. Please complete a test first.");
+                return;
+            }
+            
+            console.log("Starting Adaptive Quiz with Questions:", questions);
+            document.getElementById("retry-quiz").style.display = "block";
+        }
+
+        // Show retry button after quiz completion
+        document.addEventListener("DOMContentLoaded", function () {
+            if (localStorage.getItem("newQuizReady") === "true") {
+                document.getElementById("retry-quiz").style.display = "block";
+            }
+        });
+    </script>
+</body>
+</html>
