@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration - Consent & Declaration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      background-color: #f7f7f7;
+    }
+    h2 {
+      text-align: center;
+    }
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .checkbox-group {
+      margin-top: 15px;
+    }
+    label {
+      display: block;
+      margin: 10px 0;
+    }
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Step 6: Consent & Declaration</h2>
+
+<form id="consentForm" action="review.html" method="get" onsubmit="return validateConsent()">
+
+  <div class="checkbox-group">
+    <label><input type="checkbox" name="terms" id="terms"> I agree to the <a href="#">Terms & Conditions</a></label>
+    <label><input type="checkbox" name="privacy" id="privacy"> I agree to the <a href="#">Privacy Policy</a></label>
+    <label><input type="checkbox" name="marketing" id="marketing"> I would like to receive marketing updates via email/SMS</label>
+  </div>
+
+  <div class="nav-buttons">
+    <button type="button" onclick="location.href='login_authentication.html'">Previous</button>
+    <button type="submit">Next</button>
+  </div>
+
+</form>
+
+<script>
+  function validateConsent() {
+    if (!document.getElementById("terms").checked) {
+      alert("You must agree to the Terms & Conditions.");
+      return false;
+    }
+    if (!document.getElementById("privacy").checked) {
+      alert("You must agree to the Privacy Policy.");
+      return false;
+    }
+    return true;
+  }
+</script>
+
+</body>
+</html>

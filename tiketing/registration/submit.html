@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration - Submitted</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: auto;
+      padding: 40px;
+      background-color: #f0fff0;
+      text-align: center;
+    }
+    .card {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: inline-block;
+    }
+    h2 {
+      color: green;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 18px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h2>✅ Form Submitted Successfully!</h2>
+  <p>Thank you for completing your registration.</p>
+  <p>Your information has been recorded.</p>
+
+  <button onclick="startNewRegistration()">Start New Registration</button>
+</div>
+
+<script>
+  // Clear saved data
+  window.onload = function () {
+    localStorage.removeItem("registrationData");
+  };
+
+  function startNewRegistration() {
+    window.location.href = "personal_details.html";  // First page
+  }
+</script>
+
+</body>
+</html>

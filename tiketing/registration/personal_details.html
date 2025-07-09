@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration - Personal Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      background-color: #f7f7f7;
+    }
+    h2 {
+      text-align: center;
+    }
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+    .row {
+      display: flex;
+      gap: 10px;
+    }
+    .row .col {
+      flex: 1;
+    }
+    .checkboxes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .checkboxes label {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button[disabled] {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Step 1: Personal Details</h2>
+
+<form id="personalForm" action="contact_info.html" method="get" onsubmit="return validateForm()">
+
+  <!-- Your Name -->
+  <h3>Your Name</h3>
+  <div class="row">
+    <div class="col"><label>First Name</label><input type="text" name="your_first_name" required></div>
+    <div class="col"><label>Middle Name</label><input type="text" name="your_middle_name"></div>
+    <div class="col"><label>Last Name</label><input type="text" name="your_last_name" required></div>
+  </div>
+
+  <!-- Father's Name -->
+  <h3>Father's Name</h3>
+  <div class="row">
+    <div class="col"><label>First Name</label><input type="text" name="father_first_name" required></div>
+    <div class="col"><label>Middle Name</label><input type="text" name="father_middle_name"></div>
+    <div class="col"><label>Last Name</label><input type="text" name="father_last_name" required></div>
+  </div>
+
+  <!-- Mother's Name -->
+  <h3>Mother's Name</h3>
+  <div class="row">
+    <div class="col"><label>First Name</label><input type="text" name="mother_first_name" required></div>
+    <div class="col"><label>Middle Name</label><input type="text" name="mother_middle_name"></div>
+    <div class="col"><label>Last Name</label><input type="text" name="mother_last_name" required></div>
+  </div>
+
+  <!-- Other Personal Info -->
+  <label>Date of Birth</label>
+  <input type="date" name="dob" required>
+
+  <label>Nationality</label>
+  <select name="nationality" required>
+    <option value="">--Select--</option>
+    <option value="Indian">Indian</option>
+    <option value="Other">Other</option>
+  </select>
+
+  <label>Marital Status</label>
+  <select name="marital_status" required>
+    <option value="">--Select--</option>
+    <option value="Single">Single</option>
+    <option value="Married">Married</option>
+  </select>
+
+  <label>Religion</label>
+  <select name="religion" onchange="toggleOtherReligion(this.value)" required>
+    <option value="">--Select--</option>
+    <option value="Hindu">Hindu</option>
+    <option value="Muslim">Muslim</option>
+    <option value="Christian">Christian</option>
+    <option value="Other">Other</option>
+  </select>
+  <div id="religion_other_div" style="display: none;">
+    <label>Specify Religion</label>
+    <input type="text" name="religion_other">
+  </div>
+
+  <label>Occupation</label>
+  <input type="text" name="occupation">
+
+  <label>Annual Income (INR)</label>
+  <input type="number" name="annual_income" min="0" required>
+
+  <label>Preferred Language(s)</label>
+  <div class="checkboxes">
+    <label><input type="checkbox" name="language[]" value="Hindi"> Hindi</label>
+    <label><input type="checkbox" name="language[]" value="English"> English</label>
+    <label><input type="checkbox" name="language[]" value="Marathi"> Marathi</label>
+    <label><input type="checkbox" name="language[]" value="Other"> Other</label>
+  </div>
+
+  <!-- Navigation Buttons -->
+  <div class="nav-buttons">
+    <button type="button" disabled>Previous</button>
+    <button type="submit">Next</button>
+  </div>
+</form>
+
+
+  <script>
+  function toggleOtherReligion(value) {
+    document.getElementById("religion_other_div").style.display = value === "Other" ? "block" : "none";
+  }
+
+  function validateForm() {
+    const form = document.forms["personalForm"];
+
+    // Validate DOB (must be ≥ 10 years old)
+    const dob = new Date(form["dob"].value);
+    const today = new Date();
+    const age = today.getFullYear() - dob.getFullYear();
+    if (age < 10 || dob > today) {
+      alert("DOB must be at least 10 years ago.");
+      return false;
+    }
+
+    // Validate annual income
+    const income = form["annual_income"].value;
+    if (income && isNaN(income)) {
+      alert("Annual income must be a valid number.");
+      return false;
+    }
+
+    return true;
+  }
+</script>
+
+
+</body>
+</html>

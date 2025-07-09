@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration - Account Preference</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      background-color: #f7f7f7;
+    }
+    h2 {
+      text-align: center;
+    }
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .row {
+      display: flex;
+      gap: 10px;
+    }
+    .row .col {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Step 4: Account Preference</h2>
+
+<form id="accountForm" action="login_authentication.html" method="get" onsubmit="return validateAccountForm()">
+
+  <label>Account Type</label>
+  <select name="account_type" required>
+    <option value="">--Select--</option>
+    <option value="Savings">Savings</option>
+    <option value="Current">Current</option>
+  </select>
+
+  <label>Account Mode</label>
+  <select name="account_mode" required>
+    <option value="">--Select--</option>
+    <option value="Individual">Individual</option>
+    <option value="Joint">Joint</option>
+  </select>
+
+  <label>Preferred Branch</label>
+  <select name="branch" required>
+    <option value="">--Select Branch--</option>
+    <option value="Mumbai">Mumbai</option>
+    <option value="Delhi">Delhi</option>
+    <option value="Pune">Pune</option>
+    <option value="Nagpur">Nagpur</option>
+    <option value="Other">Other</option>
+  </select>
+
+  <h3>Nominee Details</h3>
+  <label>Name</label>
+  <input type="text" name="nominee_name" required>
+
+  <label>Relation</label>
+  <input type="text" name="nominee_relation" required>
+
+  <label>Date of Birth</label>
+  <input type="date" name="nominee_dob" required>
+
+  <div class="nav-buttons">
+    <button type="button" onclick="location.href='kyc.html'">Previous</button>
+    <button type="submit">Next</button>
+  </div>
+
+</form>
+
+
+<script>
+  function validateAccountForm() {
+    const dob = new Date(document.forms["accountForm"]["nominee_dob"].value);
+    const today = new Date();
+
+    const age = today.getFullYear() - dob.getFullYear();
+    const monthDiff = today.getMonth() - dob.getMonth();
+    const dayDiff = today.getDate() - dob.getDate();
+
+    // Adjust if birthday hasn't occurred this year yet
+    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+      age--;
+    }
+
+    if (age < 10) {
+      alert("Nominee must be at least 10 years old.");
+      return false;
+    }
+
+    return true;
+  }
+</script>
+
+
+
+</body>
+</html>

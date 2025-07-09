@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration - KYC</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      background-color: #f7f7f7;
+    }
+    h2 {
+      text-align: center;
+    }
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+    input[type="text"], input[type="file"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Step 3: KYC Details</h2>
+
+<form id="kycForm" action="account_preference.html" method="get" onsubmit="return validateKYC()" enctype="multipart/form-data">
+
+  <label>Aadhaar Number</label>
+  <input type="text" name="aadhaar" maxlength="12" required>
+
+  <label>PAN Number</label>
+  <input type="text" name="pan" maxlength="10" required>
+
+  <label>Upload Aadhaar (PDF/JPEG/PNG)</label>
+  <input type="file" name="aadhaar_file" accept=".pdf,.jpg,.jpeg,.png" required>
+
+  <label>Upload PAN (PDF/JPEG/PNG)</label>
+  <input type="file" name="pan_file" accept=".pdf,.jpg,.jpeg,.png" required>
+
+  <label>Upload Passport Photo (JPEG/PNG)</label>
+  <input type="file" name="photo_file" accept=".jpg,.jpeg,.png" required>
+
+  <label>Upload Signature (JPEG/PNG)</label>
+  <input type="file" name="signature_file" accept=".jpg,.jpeg,.png" required>
+
+  <div class="nav-buttons">
+    <button type="button" onclick="location.href='contact_info.html'">Previous</button>
+    <button type="submit">Next</button>
+  </div>
+
+</form>
+
+<script>
+  function validateKYC() {
+    const aadhaar = document.forms["kycForm"]["aadhaar"].value.trim();
+    const pan = document.forms["kycForm"]["pan"].value.trim();
+
+    if (!/^\d{12}$/.test(aadhaar)) {
+      alert("Aadhaar must be a 12-digit number.");
+      return false;
+    }
+
+    if (!/^[A-Z0-9]{10}$/i.test(pan)) {
+      alert("PAN must be 10 characters (letters/numbers).");
+      return false;
+    }
+
+    const allowedExtensions = [".pdf", ".jpg", ".jpeg", ".png"];
+    const fileInputs = ["aadhaar_file", "pan_file", "photo_file", "signature_file"];
+
+    for (let name of fileInputs) {
+      const file = document.forms["kycForm"][name].value;
+      const ext = file.substring(file.lastIndexOf(".")).toLowerCase();
+      if (!allowedExtensions.includes(ext)) {
+        alert("Invalid file type uploaded in: " + name);
+        return false;
+      }
+    }
+
+    return true;
+  }
+</script>
+
+</body>
+</html>

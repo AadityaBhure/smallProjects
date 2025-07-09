@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration - Login Authentication</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      background-color: #f7f7f7;
+    }
+    h2 {
+      text-align: center;
+    }
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    input[readonly] {
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Step 5: Login Authentication</h2>
+
+<form id="loginForm" action="consent_declaration.html" method="get" onsubmit="return validateLoginForm()">
+
+  <label>Username (System Generated)</label>
+  <input type="text" name="username" id="username" readonly required>
+
+  <label>Password</label>
+  <input type="password" name="password" id="password" required>
+
+  <label>Confirm Password</label>
+  <input type="password" name="confirm_password" id="confirm_password" required>
+
+  <div class="nav-buttons">
+    <button type="button" onclick="location.href='account_preference.html'">Previous</button>
+    <button type="submit">Next</button>
+  </div>
+</form>
+
+<script>
+  // Auto-generate username
+  function generateUsername() {
+    const fname = localStorage.getItem("your_first_name") || "user";
+    const dob = localStorage.getItem("dob") || "2000-01-01";
+    
+    const prefix = fname.substring(0, 3).toLowerCase();
+    const yearSuffix = dob.substring(2, 4); // last 2 digits of year
+    const randomNum = Math.floor(100 + Math.random() * 900); // random 3-digit
+
+    const uname = prefix + yearSuffix + randomNum;
+    document.getElementById("username").value = uname;
+  }
+
+  // Validate passwords
+  function validateLoginForm() {
+    const pw = document.getElementById("password").value;
+    const cpw = document.getElementById("confirm_password").value;
+
+    if (pw.length < 6) {
+      alert("Password must be at least 6 characters.");
+      return false;
+    }
+
+    if (pw !== cpw) {
+      alert("Passwords do not match.");
+      return false;
+    }
+
+    return true;
+  }
+
+  window.onload = generateUsername;
+</script>
+
+</body>
+</html>

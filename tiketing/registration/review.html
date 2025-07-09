@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration - Review All</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+      background-color: #f7f7f7;
+    }
+    h2 {
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      background: #fff;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    th {
+      background-color: #eee;
+    }
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Step 7: Review Your Details</h2>
+
+<div id="reviewContent"></div>
+
+<div class="nav-buttons">
+  <button type="button" onclick="location.href='consent_declaration.html'">Previous</button>
+  <button type="button" onclick="location.href='submit.html'">Submit</button>
+</div>
+
+<script>
+  // Example of retrieving localStorage data
+  function loadReviewData() {
+    const data = JSON.parse(localStorage.getItem("registrationData")) || {};
+
+    const section = (title, rows) => `
+      <h3>${title}</h3>
+      <table>
+        ${rows.map(row => `
+          <tr>
+            <th>${row[0]}</th>
+            <td>${row[1] || ''}</td>
+          </tr>
+        `).join('')}
+      </table>
+    `;
+
+    const html = `
+      ${section("Personal Details", [
+        ["Your Name", `${data.your_first_name || ''} ${data.your_middle_name || ''} ${data.your_last_name || ''}`],
+        ["Father's Name", `${data.father_first_name || ''} ${data.father_middle_name || ''} ${data.father_last_name || ''}`],
+        ["Mother's Name", `${data.mother_first_name || ''} ${data.mother_middle_name || ''} ${data.mother_last_name || ''}`],
+        ["DOB", data.dob],
+        ["Nationality", data.nationality],
+        ["Marital Status", data.marital_status],
+        ["Religion", data.religion + (data.religion_other ? ` (${data.religion_other})` : "")],
+        ["Occupation", data.occupation],
+        ["Annual Income", data.annual_income],
+        ["Preferred Languages", (data.languages || []).join(", ")]
+      ])}
+      ${section("Contact Info", [
+        ["Mobile Number", `${data.country_code || ''} ${data.mobile_number || ''}`],
+        ["Email", data.email],
+        ["Alternate Number", data.alternate_number],
+        ["Residential Address", data.residential_address],
+        ["Permanent Address", data.permanent_address],
+        ["City", data.city],
+        ["State", data.state],
+        ["Country", data.country],
+        ["Pincode", data.pincode]
+      ])}
+      ${section("KYC Details", [
+        ["Aadhaar Number", data.aadhaar],
+        ["PAN Number", data.pan],
+        ["Aadhaar File", data.aadhaar_file || "Uploaded"],
+        ["PAN File", data.pan_file || "Uploaded"],
+        ["Photo", data.photo_file || "Uploaded"],
+        ["Signature", data.signature_file || "Uploaded"]
+      ])}
+      ${section("Account Preference", [
+        ["Account Type", data.account_type],
+        ["Account Mode", data.account_mode],
+        ["Branch", data.branch],
+        ["Nominee Name", data.nominee_name],
+        ["Nominee Relation", data.nominee_relation],
+        ["Nominee DOB", data.nominee_dob]
+      ])}
+      ${section("Login Authentication", [
+        ["Username", data.username],
+        ["Password", "********"]
+      ])}
+      ${section("Consent & Declaration", [
+        ["Terms & Conditions", data.terms ? "Agreed" : "Not Agreed"],
+        ["Privacy Policy", data.privacy ? "Agreed" : "Not Agreed"],
+        ["Marketing Opt-in", data.marketing ? "Yes" : "No"]
+      ])}
+    `;
+
+    document.getElementById("reviewContent").innerHTML = html;
+  }
+
+  loadReviewData();
+</script>
+
+</body>
+</html>

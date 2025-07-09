@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Customer/Agent</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-card {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      width: 350px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .toggle-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .toggle-buttons button {
+      flex: 1;
+      margin: 0 5px;
+      padding: 10px;
+      font-size: 14px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+
+    .login-btn {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .login-type-label {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .register-link {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .register-link a {
+      color: #007BFF;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-card">
+  <div class="login-type-label" id="loginTypeLabel">Customer Login</div>
+
+  <div class="toggle-buttons">
+    <button onclick="setLoginType('customer')">Customer</button>
+    <button onclick="setLoginType('agent')">Agent</button>
+  </div>
+
+  <form onsubmit="return handleLogin()">
+    <input type="text" id="username" placeholder="Username" required>
+    <input type="password" id="password" placeholder="Password" required>
+
+    <button type="submit" class="login-btn">Login</button>
+  </form>
+
+  <div class="register-link">
+    Don’t have an account? <a href="../registration/personal_details.html">Register Here</a>
+  </div>
+</div>
+
+<script>
+  let loginType = "customer"; // default
+
+  function setLoginType(type) {
+    loginType = type;
+    document.getElementById("loginTypeLabel").innerText = 
+      type === "customer" ? "Customer Login" : "Agent Login";
+  }
+
+  function handleLogin() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    // Here you would typically POST to your server
+    alert(`Logging in as ${loginType.toUpperCase()}: ${username}`);
+    return false; // prevent real submission for now
+  }
+</script>
+
+</body>
+</html>
