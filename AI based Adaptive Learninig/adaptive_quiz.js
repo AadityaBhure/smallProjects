@@ -1,7 +1,7 @@
 // fetch_questions.js
 // Fetches new questions from Gemini API and shows a popup
 
-const API_KEY = "AIzaSyDwN3DSHp14M1TA7z1_MGmhGkUf0BHVhiI";  // API Key integrated
+const API_KEY = "Put your Own API";  // API Key integrated
 
 function showPopup(message) {
     const popup = document.getElementById("popup");
