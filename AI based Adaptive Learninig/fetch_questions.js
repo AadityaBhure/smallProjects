@@ -2,7 +2,7 @@
 // Fetches new questions from Gemini API and shows a popup
 
 // Replace with your API key
-const API_KEY = "AIzaSyDwN3DSHp14M1TA7z1_MGmhGkUf0BHVhiI";  // Make sure to use your actual API key here
+const API_KEY = "Put your own api";  // Make sure to use your actual API key here
 
 document.addEventListener("DOMContentLoaded", function() {
   // Create popup element if it doesn't exist
